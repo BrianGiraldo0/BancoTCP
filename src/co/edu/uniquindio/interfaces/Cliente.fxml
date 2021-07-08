@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F7F7F7;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.interfaces.ControladorCliente">
+   <children>
+      <GridPane layoutX="202.0" layoutY="203.0" prefHeight="315.0" prefWidth="877.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnAbrirCuenta" layoutX="8.0" layoutY="9.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #2B9DBB; -fx-background-radius: 7; -fx-border-radius: 7;" text="Abrir cuenta" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Button fx:id="btnAbrirBolsillo" layoutX="8.0" layoutY="9.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #2B9DBB; -fx-background-radius: 7; -fx-border-radius: 7;" text="Abrir bolsillo" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <children>
+                  <Button fx:id="btnCancelarBolsillo" layoutX="8.0" layoutY="11.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #2B9DBB; -fx-background-radius: 7; -fx-border-radius: 7;" text="Cancelar &#10;Boslillo" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
+               <children>
+                  <Button fx:id="btnCancelarCuenta" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #2B9DBB; -fx-background-radius: 7; -fx-border-radius: 7;" text="Cancelar &#10;cuenta&#10;" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="btnDepositar" layoutX="9.0" layoutY="8.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #2B9DBB; -fx-background-radius: 7; -fx-border-radius: 7;" text="Depositar" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="btnRetirar" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #2B9DBB; -fx-background-radius: 7; -fx-border-radius: 7;" text="Retirar" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="btnTrasladar" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #2B9DBB; -fx-background-radius: 7; -fx-border-radius: 7;" text="Trasladar &#10;saldo" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="btnConsultar" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #2B9DBB; -fx-background-radius: 7; -fx-border-radius: 7;" text="Consultar &#10;saldo" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <Button fx:id="btnSalir" layoutX="211.0" layoutY="554.0" mnemonicParsing="false" prefHeight="141.0" prefWidth="204.0" style="-fx-background-color: #042B35; -fx-background-radius: 7; -fx-border-radius: 7;" text="Salir" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="348.0" layoutY="79.0" text="¿Que operación desea realizar?" textFill="#217a90">
+         <font>
+            <Font name="Arial Black" size="35.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
