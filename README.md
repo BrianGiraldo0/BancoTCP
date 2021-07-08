@@ -1,2 +1,2 @@
-# AvalonBD
-Proyecto final de bases de datos 2021-1 en JavaFX
+# BancoTCP
+Trabajo #2 de infraestructura de comunicaciones
