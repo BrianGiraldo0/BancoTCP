@@ -17,7 +17,7 @@ public class BancoServerProtocol {
         createStreams (socket);
 
         String message= fromNetwork.readLine();
-        System.out.println(" [Server] From client:" + message);
+        System.out.println(" [Server] From client: " + message);
         try {
 			realizarOperacion(message);
 		} catch (BancoException e) {
@@ -45,11 +45,11 @@ public class BancoServerProtocol {
     	
     	if(messageArray[0].equals("ABRIR_CUENTA")) {
     		abrirCuenta(messageArray[1]);
-            toNetwork.println("Apertura de la cuenta Exitosa");
+            toNetwork.println("Apertura de la cuenta exitosa");
             
     	}else if(messageArray[0].equals("ABRIR_BOLSILLO")){
     		abrirBolsillo(messageArray[1]);
-    		toNetwork.println("Apertura del bolsillo Exitosa");
+    		toNetwork.println("Apertura del bolsillo exitosa");
     		
     	}else if(messageArray[0].equals("CANCELAR_BOLSILLO")){
     		cancelarBolsillo(messageArray[1]);
@@ -64,6 +64,7 @@ public class BancoServerProtocol {
     		toNetwork.println("Deposito de " +messageArray[2] + " exitoso.");
     		
     	}else if(messageArray[0].equals("RETIRAR")){
+    		
     		retirarDinero(messageArray[1], messageArray[2]);
     		toNetwork.println("Retiro de " +messageArray[2] + " exitoso.");
     		
@@ -179,7 +180,6 @@ public class BancoServerProtocol {
      */
     public static void retirarDinero(String numCuenta, String valor) throws BancoException {
     	Cuenta cuenta =  BancoServer.obtenerCuenta(Integer.parseInt(numCuenta));
-    	
     	if(cuenta == null)
     		throw new BancoException("No se puede retirar porque la cuenta no existe.");
     	

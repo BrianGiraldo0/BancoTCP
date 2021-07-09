@@ -5,6 +5,8 @@ public class BancoClient {
     public static final int PORT = 3400;
     public static final String SERVER = "localhost";  
     public static boolean IteradorInfinito;
+    
+    
 
     private Socket clientSideSocket;
 

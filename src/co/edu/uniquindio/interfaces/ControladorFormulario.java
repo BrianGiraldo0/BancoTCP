@@ -1,14 +1,18 @@
 package co.edu.uniquindio.interfaces;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.banco.ClientApp;
+import co.edu.uniquindio.banco.Transaccion;
 import co.edu.uniquindio.cliente.BancoClient;
-import co.edu.uniquindio.cliente.BancoClientProtocol;
 import co.edu.uniquindio.server.BancoServer;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,9 +24,14 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ControladorFormulario {
 
+    private static PrintWriter toNetwork;
+
+    private static BufferedReader fromNetwork;
+    
     @FXML
     private ResourceBundle resources;
 
@@ -50,11 +59,62 @@ public class ControladorFormulario {
     @FXML
     private TextField operacion2Text;
     
+    private String command="";
     private int opcion;
+    public static boolean permitirSiguiente=false;
+    public static final int PORT = 3400;
+    public static final String SERVER = "localhost";  
+    public static boolean IteradorInfinito;
+    private Socket clientSideSocket;
+    
+    private String fromServer;
+    
+    
+    public void protocol (Socket socket) throws Exception {
+    		createStreams(socket);
+    		
+    		
+             if(permitirSiguiente) {
+            	  toNetwork.println(command);
+
+             
+             fromServer = fromNetwork.readLine();
+             
+             }
+            	 permitirSiguiente=false;
+             
+             
+
+    }
+    private static void createStreams (Socket socket) throws IOException {
+        toNetwork = new PrintWriter(socket.getOutputStream(), true);
+        fromNetwork = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    }
+    
+    
+    
+    
+    
+    
+    public void init() {
+    	 try {
+				clientSideSocket =new Socket (SERVER, PORT);
+				protocol(clientSideSocket);
+				clientSideSocket.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	       
+	        
+	    	}
+    
+    
+    
     
     @FXML
-    void initialize() {
-        
+    void initialize()  {
+    	
     	 DropShadow effect = new DropShadow();
  	    effect.setBlurType(BlurType.GAUSSIAN);
  	    effect.setColor(Color.rgb(0,0,0, .5));
@@ -71,23 +131,53 @@ public class ControladorFormulario {
  	   
  	   btnContinuar.setOnMouseClicked(e -> {
  	   		
- 		   String command = readMenu(opcion+"");
+ 		   command = readMenu(opcion+"");
+ 		   command+= " (" + new Date() + ")";
  		   System.out.println(command);
  		  Parent root;
 		try {
 			root = FXMLLoader.load(getClass().getResource("/co/edu/uniquindio/interfaces/Cliente.fxml"));
 			Scene scene = new Scene(root);
  	        ClientApp.stage.setScene(scene);
+ 	       ClientApp.stage.hide();
  	        
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		permitirSiguiente = true;
+		
+		init();
+		
+		Transaccion t = new Transaccion(command, new Date());
+		BancoServer.getTransacciones().add(t);
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/interfaces/Notificacion.fxml"));
+		try {
+			root = loader.load();
+			Scene scene = new Scene(root);
+	        ControladorNotificacion controllerNoti = loader.getController();
+	        controllerNoti.setTextNotificacion(fromServer);
+	        controllerNoti.inicializarNotificacion();
+	        Stage primaryStage = new Stage();
+	        primaryStage.initStyle(StageStyle.UNDECORATED);
+	        primaryStage.setScene(scene);
+	        primaryStage.show();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+		
  	        
  	   });
     	
 
     }
+    
+    
+    
     
     
     public void iniciarAbrirCuenta() {
@@ -222,8 +312,6 @@ public class ControladorFormulario {
 				command = "CONSULTAR " + numCuenta;
 			break;
 		
-		case 9: BancoClient.IteradorInfinito = false;
-				command= "SALIR";
 
 		}
     	
