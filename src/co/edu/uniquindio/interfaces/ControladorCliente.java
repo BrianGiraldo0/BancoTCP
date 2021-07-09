@@ -50,7 +50,8 @@ public class ControladorCliente{
     private Button btnSalir;
 
     private ControladorFormulario controller;
-    
+
+
 
     
     @FXML
@@ -83,6 +84,7 @@ public class ControladorCliente{
 				Parent root = loader.load();
 				controller = loader.getController();
 	    		controller.iniciarAbrirCuenta();
+	    		
 	    		Scene scene = new Scene(root);
 	    	    ClientApp.stage.setScene(scene);
 			} catch (IOException e1) {

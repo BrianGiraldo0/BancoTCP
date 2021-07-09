@@ -2,16 +2,18 @@ package co.edu.uniquindio.server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import co.edu.uniquindio.banco.Cuenta;
+import co.edu.uniquindio.banco.Transaccion;
 import co.edu.uniquindio.exceptions.BancoException;
 
 public class BancoServer {
     public static final int PORT = 3400;
     public static HashMap<String, Cuenta> clientes;
-
+    public static ArrayList<Transaccion> transacciones;
     private ServerSocket listener; private Socket serverSideSocket;
 
     public BancoServer() {
@@ -37,6 +39,21 @@ public class BancoServer {
     	return clientes;
     }
     
+    public static ArrayList<Transaccion> getTransacciones(){
+    	if(transacciones!=null) {
+    		return transacciones;
+    	}else {
+    		transacciones = new ArrayList<>();
+    	}
+    	
+    	return transacciones;
+    }
+    
+    public static void main(String[] args) throws Exception {
+    	BancoServer server = new BancoServer();
+    	server.init();
+    	
+    }
     /**
      * Metodo que verifica que si ya existe una cuenta con un numero de cuenta dado
      * @param nombre
@@ -74,9 +91,5 @@ public class BancoServer {
     }
     
    
-    	public static void main(String[] args) throws Exception {
-    		BancoServer banco = new BancoServer();
-    		banco.init();
-    	}
     
 }
