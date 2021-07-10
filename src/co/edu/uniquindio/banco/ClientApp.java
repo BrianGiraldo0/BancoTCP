@@ -18,8 +18,6 @@ public class ClientApp extends Application{
     public static void main(String args[]) throws Exception {
     	
     	
-				
-    	
     	Thread hiloServer = new Thread(new Runnable() {
 			
 			@Override

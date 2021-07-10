@@ -18,14 +18,14 @@ public class BancoClient {
     public void init() throws Exception {
     	createMenu();
     	IteradorInfinito=true;
+    	
     	while(IteradorInfinito) {
-    		
-        clientSideSocket =new Socket (SERVER, PORT);
+    	clientSideSocket =new Socket (SERVER, PORT);
         BancoClientProtocol.protocol(clientSideSocket);
         clientSideSocket.close();
         
     	}
-
+    	
     }
 
     public static void main(String args[]) throws Exception {
@@ -44,7 +44,8 @@ public class BancoClient {
     					 "[6] Retirar dinero de una cuenta" + "\n" +
     					 "[7] Trasladar dinero a un bolsillo" + "\n" +
     					 "[8] Consultar saldo de una cuenta o un bolsillo  \n" + 
-    					 "[9] Salir  \n");
+    					 "[9] Cargar transacciones \n"+ 
+    					 "[10] Salir \n");
     	
     	
     	

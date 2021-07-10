@@ -4,18 +4,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import co.edu.uniquindio.banco.Bolsillo;
 import co.edu.uniquindio.banco.Cuenta;
 import co.edu.uniquindio.exceptions.BancoException;
+import co.edu.uniquindio.resources.Loader;
 
 public class BancoServerProtocol {
     private  static PrintWriter toNetwork;
     private static BufferedReader fromNetwork;
 
-    public static void protocol(Socket socket) throws IOException {
+    public static void protocol(Socket socket) throws IOException, InterruptedException {
         createStreams (socket);
-
         String message= fromNetwork.readLine();
         System.out.println(" [Server] From client: " + message);
         try {
@@ -39,8 +40,9 @@ public class BancoServerProtocol {
      * Método principal de los servicios
      * @param message Comando ingresado por el cliente
      * @throws BancoException 
+     * @throws InterruptedException 
      */
-    public static void realizarOperacion(String message) throws BancoException {
+    public static void realizarOperacion(String message) throws BancoException, InterruptedException {
     	String[] messageArray = message.split(" ");
     	
     	if(messageArray[0].equals("ABRIR_CUENTA")) {
@@ -80,12 +82,23 @@ public class BancoServerProtocol {
     		toNetwork.println("Por favor ingrese un numero de cuenta valido!");
     	}else if(messageArray[0].equals("ERROR_SALDO")){
     		toNetwork.println("Por favor ingrese un número valido en el saldo!");
+    	}else if(messageArray[0].equals("CARGAR")){
+    		cargarTransacciones(messageArray[1]);
+    		toNetwork.println("Transacciones cargadas correctamente!");
+    		
     	}else {
     		toNetwork.println("No se encuentra el comando ingresado.");
     	}
     		
     }
     
+    public static void cargarTransacciones(String mensaje) throws BancoException{
+    	ArrayList<String> lista = Loader.cargarTransacciones(mensaje);
+    	if(lista==null)
+    		throw new BancoException("Por favor verifique el nombre ingresado.");
+    	
+    	
+    }
     /**
      * Servicio #1 del enunciado del proyecto
      * @param nombre nombre de usuario del cliente
