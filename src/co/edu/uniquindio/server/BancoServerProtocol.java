@@ -138,14 +138,25 @@ public class BancoServerProtocol {
      * @throws BancoException
      */
     public static void cancelarBolsillo(String numCuenta) throws BancoException  {
+    	Cuenta cuenta = null;
     	
-    	Cuenta cuenta =  BancoServer.obtenerCuenta(Integer.parseInt(numCuenta.substring(0, numCuenta.length()-1)));
+    	if(BancoServer.isNumber(numCuenta.substring(0,numCuenta.length()-1))){
+    		
+    		
+    		cuenta =  BancoServer.obtenerCuenta(Integer.parseInt(numCuenta.substring(0, numCuenta.length()-1)));
+    	}else {
+    		throw new BancoException("Ingrese número de cuenta válido.");
+    	}
+    	
+    	
+    	
     	
     	if(cuenta.getBolsillo() == null)
     		throw new BancoException("No existe un bolsillo en esta cuenta.");
-    	
+    	if (cuenta!=null) {
     	cuenta.setSaldo(cuenta.getBolsillo().getSaldo() +  cuenta.getSaldo());
     	cuenta.setBolsillo(null);
+    	}
     	
     }
     

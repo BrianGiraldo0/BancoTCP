@@ -225,7 +225,7 @@ public class ControladorFormulario {
     public void iniciarRetirar() {
     	tituloOperacionLabel.setText("Nuevo retiro");
     	operacion1Label.setText("Número de cuenta: ");
-    	operacion2Label.setText("Saldo a depositar: ");
+    	operacion2Label.setText("Saldo a retirar: ");
     	opcion=6;
     }
     
